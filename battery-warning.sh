@@ -5,12 +5,12 @@ while true; do
     batterystatus=$(cat /sys/class/power_supply/BAT0/status)
     fullnotif=0
 
-    if [ $batterylife -lt 25 ] && [ $batterystatus -eq "Discharging" ]; then 
+    if [ $batterylife -lt 25 ] && [ "$batterystatus" == "Discharging" ]; then 
 	notify-send "MAG CHARGE KA NA $batterylife% NALANG NATITIRA" 
 	fullnotif=0
     fi
 
-    if [ $batterylife -eq 100 ] && [ $batterystatus -eq "Charging" ] && [ $fullnotif -eq 0 ]; then 
+    if [ $batterylife -eq 100 ] && [ "$batterystatus" == "Charging" ] && [ $fullnotif -eq 0 ]; then 
 	notify-send "100% na yehey";
 	fullnotif=1;
     fi
